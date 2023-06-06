@@ -41,7 +41,5 @@ The `RNASeqData` class performs operations on RNA sequence data. It assigns and 
    - Several getter methods are implemented to retrieve various class-wide variables.
    - These methods include: `getRawDataFileName`, `getAnnotationsFileName`, `getRandIndices`, `getRawData`, `getDSClusterData`, `getDSCluster_MoleculeData`, `getDSTrainingData`, `getDSTestingData`, `getDSTargetValues`, `getDSTestingDataTargetValues`, `getTrainingData`, `getTrainingDataTargetValues`, `getTestingData`, `getTestingDataTargetValues`, `getFolds`, `getFoldsKey`, `getCellIdentifierAnnotations`, `getMoleculeCountAnnotations`, `getNumCellsRaw`, `getNumCellsDSCluster`, `getNumGenesRaw`, `getNumGenesDSCluster`.
 
-6. **Data
-
- Partition** (`partitionData`):
+6. **Data Partition** (`partitionData`):
    - This method simply prints a message indicating that data is being partitioned. The actual partitioning is presumably carried out by other methods not shown in this provided code.
