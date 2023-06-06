@@ -1,5 +1,7 @@
 # sc-classification
 
+This project is a replication of: https://github.com/bradenkatzman/CellClassificationMachineLearning
+
 ## Programming Specs 
 
 # Pre-processing RNA-Seq Data
@@ -84,3 +86,178 @@ The `RNASeqData` class performs operations on RNA sequence data. It assigns and 
 
 6. **Data Partition** (`partitionData`):
    - This method simply prints a message indicating that data is being partitioned. The actual partitioning is presumably carried out by other methods not shown in this provided code.
+
+
+# Defining Classifiers
+
+**Neural Network (MLP from sklearn)*
+
+**Global Declarations:**
+- An MLPClassifier named 'mlpClf' is initialized globally with predefined hyperparameters such as activation function, solver algorithm, regularization parameter (alpha), batch size, learning rate, hidden layer sizes, maximum iterations, momentum, tolerance for optimization, validation fraction, and many others.
+
+**Functions:**
+
+1. **fitTrainingData(training_data, nSamples)**
+   - **Input:** 
+     - 'training_data': A 2D list where each row represents a sample (cell) and each column represents a feature (gene expression).
+     - 'nSamples': A 1D list of labels or classifiers corresponding to each sample in 'training_data'.
+   - **Process:**
+     - Converts 'training_data' and 'nSamples' into NumPy arrays.
+     - Calls the 'fit' method of 'mlpClf' to train the model on 'training_data' and 'nSamples'.
+   - **Output:** 
+     - No explicit output, but the 'mlpClf' object is fitted to the data, ready to make predictions.
+
+2. **predictTestData(testing_data)**
+   - **Input:** 
+     - 'testing_data': A 2D list where each row represents a sample (cell) to be classified.
+   - **Process:**
+     - Converts 'testing_data' into a NumPy array.
+     - Calls the 'predict' method of 'mlpClf' to predict the class labels for 'testing_data'.
+   - **Output:**
+     - 'predicted': A NumPy array of the predicted class labels for 'testing_data'.
+
+**Random Forest Classifiera**
+
+**Global Declarations:**
+- A RandomForestClassifier named 'rfClf' is initialized globally with a predefined parameter, 'n_estimators', which indicates the number of trees in the forest.
+
+**Functions:**
+
+1. **fitTrainingData(training_data, nSamples)**
+   - **Input:** 
+     - 'training_data': A 2D list where each row represents a sample (cell) and each column represents a feature (gene expression).
+     - 'nSamples': A 1D list of labels or classifiers corresponding to each sample in 'training_data'.
+   - **Process:**
+     - Converts 'training_data' and 'nSamples' from lists to NumPy arrays.
+     - Calls the 'fit' method of 'rfClf' to train the model on 'training_data' and 'nSamples'.
+   - **Output:** 
+     - Does not return an explicit output, but it does train the 'rfClf' object with the provided data, readying it for prediction.
+
+2. **predictTestData(testing_data)**
+   - **Input:** 
+     - 'testing_data': A 2D list where each row represents a sample (cell) to be classified.
+   - **Process:**
+     - Converts 'testing_data' from a list to a NumPy array.
+     - Calls the 'predict' method of 'rfClf' to predict the class labels for 'testing_data'.
+   - **Output:**
+     - Returns 'predicted': A NumPy array of the predicted class labels for 'testing_data'.
+
+**K-Nearest Neighbors (KNN) Classifier**
+
+**Global Declarations:**
+- A KNeighborsClassifier named 'knn' is initialized globally with default parameters.
+
+**Functions:**
+
+1. **initializeKnn(n_neighbors)**
+   - **Input:** 
+     - 'n_neighbors': The number of neighbors to use by default for k_neighbors queries.
+   - **Process:**
+     - Reinitializes the global 'knn' with specified parameters including the 'n_neighbors' parameter passed as an argument.
+   - **Output:** 
+     - Does not return an explicit output, but it does reconfigure the 'knn' object with the provided 'n_neighbors'.
+
+2. **fitTrainingData(training_data, nSamples)**
+   - **Input:** 
+     - 'training_data': A 2D list where each row represents a sample (cell) and each column represents a feature (gene expression).
+     - 'nSamples': A 1D list of labels or classifiers corresponding to each sample in 'training_data'.
+   - **Process:**
+     - Converts 'training_data' and 'nSamples' from lists to NumPy arrays.
+     - Calls the 'fit' method of 'knn' to train the model on 'training_data' and 'nSamples'.
+   - **Output:** 
+     - Does not return an explicit output, but it does train the 'knn' object with the provided data, readying it for prediction.
+
+3. **predictTestData(testing_data)**
+   - **Input:** 
+     - 'testing_data': A 2D list where each row represents a sample (cell) to be classified.
+   - **Process:**
+     - Converts 'testing_data' from a list to a NumPy array.
+     - Calls the 'predict' method of 'knn' to predict the class labels for 'testing_data'.
+   - **Output:**
+     - Returns 'predicted': A NumPy array of the predicted class labels for 'testing_data'.
+
+
+**]Support Vector Classification (SVC) with Radial Basis Function (RBF) Kernel**
+
+**Global Declarations:**
+- An SVC object, named 'rbfSVC', is initialized globally with specified parameters including the 'rbf' kernel and auto gamma.
+
+**Functions:**
+
+1. **fitTrainingData(training_data, nSamples)**
+   - **Input:** 
+     - 'training_data': A 2D list where each row represents a sample (cell) and each column represents a feature (gene expression).
+     - 'nSamples': A 1D list of labels or classifiers corresponding to each sample in 'training_data'.
+   - **Process:**
+     - Converts 'training_data' and 'nSamples' from lists to NumPy arrays.
+     - Calls the 'fit' method of 'rbfSVC' to train the model on 'training_data' and 'nSamples'.
+   - **Output:** 
+     - Does not return an explicit output, but it does train the 'rbfSVC' object with the provided data, readying it for prediction.
+
+2. **predictTestData(testing_data)**
+   - **Input:** 
+     - 'testing_data': A 2D list where each row represents a sample (cell) to be classified.
+   - **Process:**
+     - Converts 'testing_data' from a list to a NumPy array.
+     - Calls the 'predict' method of 'rbfSVC' to predict the class labels for 'testing_data'.
+   - **Output:**
+     - Returns 'predicted': A NumPy array of the predicted class labels for 'testing_data'.
+
+Sure, here's a detailed programming spec combining the two given specifications:
+
+**RNA-seq Data Classification**
+
+**Command-Line Arguments:**
+
+1. `raw_data_file`: The path to the raw data file.
+2. `annotations_file`: The path to the annotations file.
+3. `classifier`: An integer that indicates the classifier to use: 1 for RBF SVM, 2 for MLP, 3 for KNN, 4 for RF.
+4. `downSampleFlag`: A binary indicator (0 or 1) of whether to down-sample the data.
+5. `crossValidateFlag`: A binary indicator (0 or 1) of whether to perform cross-validation.
+6. `n_neighbors` (optional): The number of neighbors to use if KNN is chosen as the classifier.
+
+**Functions:**
+
+1. `rbfSVC(trainingData, testingData, trainingDataTargets, testingDataTargets)`: Trains an RBF SVM classifier on the training data and returns the predicted values for the test data.
+2. `mlp(trainingData, testingData, trainingDataTargets, testingDataTargets)`: Trains a MLP classifier on the training data and returns the predicted values for the test data.
+3. `knn(trainingData, testingData, trainingDataTargets, testingDataTargets)`: Trains a KNN classifier on the training data and returns the predicted values for the test data.
+4. `rf(trainingData, testingData, trainingDataTargets, testingDataTargets)`: Trains a RF classifier on the training data and returns the predicted values for the test data.
+
+**Data Class:**
+
+The main function initializes an `RNASeqData` object with the raw data file and annotations file. This object is responsible for loading and processing the data.
+
+- `RNASeqData.loadData()`: Loads raw RNA seq data and annotations into memory.
+- `RNASeqData.processData()`: Applies preprocessing, including optional downsampling.
+- `RNASeqData.createFolds()`: Creates 10-fold cross-validation datasets if `crossValidateFlag` is set.
+- `RNASeqData.partitionData()`: Partitions the data into 70% training and 30% testing if `crossValidateFlag` is not set.
+
+**Main Function:**
+
+The main function processes command-line arguments, decides which classifier to use, and whether to down-sample or cross-validate the data. Then it calls the corresponding function to preprocess the data, perform the classification, and send the results to an analysis module for evaluation and writing the results to a file.
+
+1. Parse command-line arguments to get `raw_data_file`, `annotations_file`, `classifier`, `downSampleFlag`, `crossValidateFlag`, and `n_neighbors`.
+2. Initialize `RNASeqData` object with `raw_data_file` and `annotations_file`.
+3. Load raw RNA seq data and annotations into memory using `RNASeqData.loadData()`.
+4. Apply preprocessing to the data with `RNASeqData.processData()`. If `downSampleFlag` is set, also downsample the data.
+5. If `crossValidateFlag` is set, create 10-fold cross-validation datasets using `RNASeqData.createFolds()`. For each fold:
+   - Separate the current fold for testing and the rest for training.
+   - Depending on the classifier chosen (RBF SVM, MLP, KNN, RF), call the corresponding function with the training data and labels and the testing data and labels.
+   - Use the returned predictions and the true labels to calculate evaluation metrics.
+   - Write the results and evaluations to a file.
+6. If `crossValidateFlag` is not set, partition the data into 70% training and 30% testing using `RNASeqData.partitionData()`. Then, similar to the above step:
+   - Depending on the classifier chosen (RBF SVM, MLP, KNN, RF), call the corresponding function with the training data and labels and the testing data and labels.
+   - Use the returned predictions and the true labels to calculate evaluation metrics.
+   - Write the results and evaluations to a file.
+7. Print the total execution time of the program.
+
+## Notes:
+- All classifiers are implemented as separate functions and accept training data, testing data, and their corresponding target values. They output predicted values for the testing data.
+- The analysis method `analyzeAndWriteToFile` is used to compute evaluation metrics and write the results to a file.
+- If KNN is chosen as the classifier, the `n_neighbors` parameter should be provided.
+- The `RNASeqData` object handles all data loading and preprocessing tasks, including optional downsampling and creating training and testing partitions.
+- If the `crossValidateFlag` is set, the program performs 10-fold cross-validation. Otherwise, it simply partitions the data into 70% training and 30% testing.
+- The final results of the program are both displayed in the console (or command line) and written to a file.
+
+
+
