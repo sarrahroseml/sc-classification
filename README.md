@@ -2,6 +2,47 @@
 
 ## Programming Specs 
 
+# Pre-processing RNA-Seq Data
+
+1. **Load Raw Data:**
+   - Import required libraries for processing, numerical calculations, and random number generation.
+   - Open the raw RNA-seq data file. 
+   - Read cell names from the first line of the file.
+   - Read each subsequent line (representing a gene) and split the gene expressions per cell. 
+   - Check whether the gene name corresponds to one of the 9 classifying genes. If it does, print a message.
+   - If the total read count for the gene (sum of gene expressions across all cells) is greater than 25, add this gene's expressions to the corresponding cells in the data. If not, ignore this gene and increment a counter for the number of ignored genes.
+   - Repeat these steps until all lines in the file have been read.
+   - Return the list of cells with their respective gene expressions.
+
+2. **Load Cell Identifier Annotations:**
+   - Open the annotation file.
+   - Skip the first line.
+   - Split the second line into individual cell identifiers.
+   - Remove unnecessary elements and ensure the number of identifiers matches the number of cells.
+   - Return the list of cell identifiers.
+
+3. **Load Molecule Count Annotations:**
+   - Open the molecule count file.
+   - Skip the first two lines.
+   - Split the third line into individual molecule counts.
+   - Remove unnecessary elements and ensure the number of molecule counts matches the number of cells.
+   - Return the list of molecule counts.
+
+4. **Downsample by Cluster Size:**
+   - Initialize counters for the 9 cell types.
+   - Scan through the list of cell identifiers to count the number of cells for each cell type and record the indices of these cells.
+   - Determine the smallest cluster size (cell type with the smallest number of cells).
+   - Randomly select cells from each cluster to match the smallest cluster size.
+   - Create a new data set with only these randomly selected cells.
+   - Return the new data set and the indices of the randomly selected cells.
+
+5. **Downsample by Molecule Count:**
+   - Make a list of the molecule count annotations for the randomly selected cells.
+   - Find the cell with the least number of molecules.
+   - Scale the gene expressions in each cell relative to the cell with the least number of molecules.
+   - Create a new data set with these scaled gene expressions.
+   - Return the new data set.
+   
 # Handling RNA-Seq Data 
 
 **RNASeqData Class Specification**
