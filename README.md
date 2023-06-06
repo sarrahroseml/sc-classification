@@ -9,8 +9,8 @@ This project is a replication of: https://github.com/bradenkatzman/CellClassific
 1. **Load Raw Data:**
    - Import required libraries for processing, numerical calculations, and random number generation.
    - Open the raw RNA-seq data file. 
-   - Read cell names from the first line of the file.
-   - Read each subsequent line (representing a gene) and split the gene expressions per cell. 
+   - Read gene names from the first line of the file.
+   - Read each subsequent line (representing a cell) and split the gene expressions per cell. 
    - Check whether the gene name corresponds to one of the 9 classifying genes. If it does, print a message.
    - If the total read count for the gene (sum of gene expressions across all cells) is greater than 25, add this gene's expressions to the corresponding cells in the data. If not, ignore this gene and increment a counter for the number of ignored genes.
    - Repeat these steps until all lines in the file have been read.
