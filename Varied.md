@@ -10,7 +10,6 @@ B. Downsampling
 C. Cross Validation 
 D. None
 
-
 # A. Downsampling & Cross Validation 
 
 ## Steps Taken
@@ -29,21 +28,44 @@ D. None
 - Open the annotations file.
 - CELL_IDs: Split the 6th line (containing the cell_ids) into individual cell identifiers & remove the first 2 irrelevant 
 - Mol_Counts: Split the 1st line into mol coounts
-Downsample by Cluster Size:
 
-Initialize counters for the 9 cell types.
-Scan through the list of cell identifiers to count the number of cells for each cell type and record the indices of these cells.
-Determine the smallest cluster size (cell type with the smallest number of cells).
-Randomly select cells from each cluster to match the smallest cluster size.
-Create a new data set with only these randomly selected cells.
-Return the new data set and the indices of the randomly selected cells.
+### Downsampling 
+
+Downsampling is a technique commonly used to balance class distribution in a dataset. The goal is to equalize the number of samples for each class or category. If there's a large discrepancy in class sizes, models may become biased towards the majority class and perform poorly on the minority class, which can lead to misleading accuracy metrics. It's important to note that while downsampling can help mitigate class imbalance issues, it also discards potentially useful data.
+
+We downsample by cluster size & the molecule count. 
+
+**Cluster Size**
+- Initialise 2 dictionaries to store a list for each cell type. These lists will contain the indices of cells & mol_count corresponding to that cell type. 
+- Determine the smallest cluster size (cell type with the smallest number of cells).
+- Randomly select cells from each cluster to match the smallest cluster size.
+- Append the indexes of these randomly-selected cells across 9 cell types to 'all_random_indexes'
+- Create a df 'downsampled_df' containing the gene exp. data from 'all_random_indexes'
+
 Downsample by Molecule Count:
+- Copy 'downsampled_df' into 'downsampled_mol'
+- Make a list of the molecule count annotations for the randomly selected cells called 'mol_countDS'.
+- Find the cell with the least number of molecules.
+- Scale the gene expressions in each cell relative to the cell with the least number of molecules in 'downsampled_mol'.
 
-Make a list of the molecule count annotations for the randomly selected cells.
-Find the cell with the least number of molecules.
-Scale the gene expressions in each cell relative to the cell with the least number of molecules.
-Create a new data set with these scaled gene expressions.
-Return the new data set.
 2. Partitioning Data 
-3. Defining Classifiers 
-4. Classification & Analysis
+
+## Cross-validation
+
+**Overview of CV**
+The entire dataset is divided into 'k' equal parts or 'folds' (in this case k=10).
+The model is trained k times. Each time, one of the k folds is used as the test set, and the remaining k-1 folds are combined to form the training set.
+The performance of the model is then averaged over the k trials to provide a less biased estimate of its true performance.
+
+**Steps**
+- Define k, the number of folds and find fold size. 
+- Shuffle 'all_random_indices'. 
+- Initialise lists called 'folds_indices' and 'folds_data'. 
+- Append each cell indice & corresponding cell data to lists 'temp_fold_indice' & 'temp_fold_data'. 
+- Once fold_size is exceeded, append 'temp_fold_indice' to 'folds_indices' and 'temp_fold_data' to 'folds_data'. Clear lists 'temp_fold_indice' & 'temp_fold_data'. Append current cell to the next fold. 
+- Add any remaining cells to the first fold. 
+
+4. Defining Classifiers 
+5. Classification & Analysis
+
+
