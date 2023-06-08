@@ -42,7 +42,7 @@ We downsample by cluster size & the molecule count.
 - Append the indexes of these randomly-selected cells across 9 cell types to 'all_random_indexes'
 - Create a df 'downsampled_df' containing the gene exp. data from 'all_random_indexes'
 
-Downsample by Molecule Count:
+**Molecule Count**
 - Copy 'downsampled_df' into 'downsampled_mol'
 - Make a list of the molecule count annotations for the randomly selected cells called 'mol_countDS'.
 - Find the cell with the least number of molecules.
@@ -53,6 +53,7 @@ Downsample by Molecule Count:
 ## Cross-validation
 
 **Overview of CV**
+
 The entire dataset is divided into 'k' equal parts or 'folds' (in this case k=10).
 The model is trained k times. Each time, one of the k folds is used as the test set, and the remaining k-1 folds are combined to form the training set.
 The performance of the model is then averaged over the k trials to provide a less biased estimate of its true performance.
@@ -66,6 +67,17 @@ The performance of the model is then averaged over the k trials to provide a les
 - Add any remaining cells to the first fold. 
 
 4. Defining Classifiers 
-5. Classification & Analysis
+- MLP
+- KNN
+- RF
+- SVM
 
+6. Classification & Analysis
+- Iterate through the folds & split into testing and training data accordingly
+- Analysis metrics
+  - Confusion Matrix: [truePositives, falsePositives, falseNegatives, trueNegatives]
+  - Accuracy 
+  - Sensitivity 
+  - Specificity 
+  - MCC
 
