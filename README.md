@@ -1,4 +1,4 @@
-# sc-classification
+# sc-classification (WIP)
 
 This project is a replication of: https://github.com/bradenkatzman/CellClassificationMachineLearning
 
